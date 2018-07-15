@@ -19,13 +19,7 @@ const marketReducer = (state = initialState, action) => {
         case FETCHING_SUCCESSFULL:
             return Object.assign({}, state, {
                 isFetching: false,
-                data: Object.values(action.data).sort((a,b) => {
-                    if (a.rank < b.rank) {
-                        return -1;
-                    } else {
-                        return 1;
-                    }
-                })
+                data: action.data
             });
         case FETCHING_ERROR:
             return Object.assign({}, state, {
