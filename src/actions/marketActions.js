@@ -27,14 +27,14 @@ export function fetchFailed() {
     }
 }
 
-export function getTickerData() {
+export function getTickerData(number) {
     console.log('getTickerData');
 
     return dispatch => {
         console.log('dispatch(fetchData)');
         dispatch(fetchData());
 
-        return fetch(`https://api.coinmarketcap.com/v2/ticker/`)
+        return fetch(`https://api.coinmarketcap.com/v2/ticker/?limit=${number}&structure=array&sort=rank`)
             .then(response => response.json(),
                 error => dispatch(fetchFailed()))
             .then(json => dispatch(fetchSuccess(json)))
